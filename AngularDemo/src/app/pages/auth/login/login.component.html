@@ -1,0 +1,31 @@
+<app-layout-page>
+  <div class="d-flex justify-content-center">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+      <div class="text-center mt-3">
+        <h1 class="text-3xl font-semibold text-primary">Login</h1>
+      </div>
+      <div class="mb-3">
+        <label for="username" class="form-label text-start w-100">Username:</label>
+        <input type="text" name="username" id="username" class="form-control" placeholder="user" formControlName="username"
+               [ngClass]="{ 'is-invalid': formGroup.controls.username.errors && formGroup.controls.username.touched }" />
+        <div class="invalid-feedback" *ngIf="formGroup.controls.username.hasError('required')">
+          Username is required.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label text-start w-100">Password:</label>
+        <input type="password" class="form-control" formControlName="password" placeholder="password" id="password" name="password"
+               [ngClass]="{ 'is-invalid': formGroup.controls.password.errors && formGroup.controls.password.touched }"
+        />
+        <div class="invalid-feedback" *ngIf="formGroup.controls.password.hasError('required')">
+          Password is required.
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary mb-3 px-5" type="submit" [disabled]="formGroup.invalid">
+          Login
+        </button>
+      </div>
+    </form>
+  </div>
+</app-layout-page>

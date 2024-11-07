@@ -14,5 +14,5 @@ import { LayoutPageComponent } from '../../shared/layouts/layout-page/layout-pag
 export class HomeComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 }

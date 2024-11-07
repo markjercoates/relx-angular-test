@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="#">Angular Demo</a>
+    <a class="navbar-brand" href="#">{{ appTitle }}</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -23,7 +23,25 @@
           >
         </li>
       </ul>
-      <span class="navbar-text"> Navbar text with an inline element </span>
+      <ul class="navbar-nav flex-row ms-md-auto me-4">
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <button class="btn btn-outline-primary" (click)="login()" >Login</button>
+        </li>
+        <li class="nav-item dropdown" *ngIf="isAuthenticated"  ngbDropdown>
+          <a
+            class="nav-link dropdown-toggle"
+            id="userDropdown"
+            ngbDropdownToggle
+            role="button"
+            aria-expanded="false"
+          >
+            User
+          </a>
+          <div ngbDropdownMenu aria-labelledby="userDropdown">
+            <button class="dropdown-item" (click)="logout()">Log Out</button>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
