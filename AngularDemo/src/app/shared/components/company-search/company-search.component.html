@@ -8,7 +8,12 @@
           && (searchForm.get('searchTerm')?.dirty || searchForm.get('searchTerm')?.touched ||
           isSubmitted)" class="text-danger">
       Search term is required.
-    </span>
+      </span>
+        <span *ngIf="searchForm.get('searchTerm')?.hasError('alphanumeric')
+          && (searchForm.get('searchTerm')?.dirty || searchForm.get('searchTerm')?.touched ||
+          isSubmitted)" class="text-danger">
+      Search term can only contain letters and/or numbers.
+      </span>
       </div>
       <div class="mb-3">
         <button type="submit"  class="btn btn-primary" (click)="searchCompanies()">Search</button>
@@ -17,3 +22,20 @@
   </div>
 </div>
 
+<div *ngIf="companies.length > 0" >
+  <h2>Search Results</h2>
+  <ul class="list-group">
+    <li
+      *ngFor="let company of companies; let i = index"
+      class="list-group-item list-group-item-action text-start"
+    >
+      <h3 class="mb-1">{{ company.title }}</h3>
+      <p class="mb-1">{{ company.description }}</p>
+      <p class="mb-1">{{ company.address_snippet }}</p>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="companies.length == 0 && isSearchCompleted">
+     No results found.
+</div>
