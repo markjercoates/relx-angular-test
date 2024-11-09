@@ -1,7 +1,7 @@
 export interface Company {
   company_status: string;
   address_snippet: string;
-  date_of_creation: string;
+  date_of_creation: Date;
   matches: Matches;
   description: string;
   links: Links;

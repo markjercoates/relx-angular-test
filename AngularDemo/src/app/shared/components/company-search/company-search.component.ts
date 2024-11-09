@@ -13,6 +13,7 @@ import {
 
 // Models
 import {Company} from "../../models/company.model";
+import {CompanyDetailComponent} from "../company-detail/company-detail.component";
 
 // Services
 import {CompanyService} from "../../services/company.service";
@@ -28,7 +29,7 @@ export function alphanumericValidator(): ValidatorFn {
 @Component({
   selector: 'app-company-search',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, NgFor],
+  imports: [ReactiveFormsModule, NgIf, NgFor, CompanyDetailComponent],
   templateUrl: './company-search.component.html',
   styleUrl: './company-search.component.scss'
 })
@@ -37,6 +38,7 @@ export class CompanySearchComponent {
     searchForm!: FormGroup;
     isSubmitted: boolean = false;
     isSearchCompleted: boolean = false;
+    selectedCompany!: Company;
 
     constructor(private companyService: CompanyService) {
         this.searchForm = new FormGroup({
@@ -63,5 +65,9 @@ export class CompanySearchComponent {
              }
           });
       }
+    }
+
+    selectCompany(company: Company): void {
+       this.selectedCompany = company;
     }
 }

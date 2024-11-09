@@ -1,0 +1,44 @@
+<div *ngIf="company">
+  <h2>Company Detail</h2>
+  <div class="text-start border p-2 ps-4">
+    <div class="row">
+      <h5>{{ company.title }}</h5>
+    </div>
+    <div class="row mb-2">
+      <div>Company number<span class="bold-label"> {{ company.company_number }}</span></div>
+    </div>
+    <div class="row mb-2">
+      <div class="">Registered office address</div>
+      <div class="bold-label">{{ company.address_snippet }}</div>
+    </div>
+    <div class="row mb-2">
+      <div class="">Company Status</div>
+      <div class="bold-label">{{ company.company_status }}</div>
+    </div>
+    <div class="row mb-2">
+      <div class="">Company Type</div>
+      <div class="bold-label">
+        <ng-container *ngIf="company.company_type === 'ltd'; else otherType">
+          Private Limited Company
+        </ng-container>
+        <ng-template #otherType>{{ company.company_type }}</ng-template>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="">Incorporated On</div>
+      <div class="bold-label">{{ company.date_of_creation | date: 'd MMMM y' }}</div>
+    </div>
+  </div>
+  <div *ngIf="officers.length > 0" class="text-start border p-2 ps-4">
+    <div class="row mb-2">
+      <h5>{{ company.title }} - Officers</h5>
+    </div>
+    <div class="row mb-2">
+      <div>Company number<span class="bold-label"> {{ company.company_number }}</span></div>
+    </div>
+    <div *ngFor="let officer of officers" class="row mb-2">
+      <div class="bold-label">{{  officer.name }}</div>
+      <div>{{ officer.officer_role }}</div>
+    </div>
+  </div>
+ </div>
