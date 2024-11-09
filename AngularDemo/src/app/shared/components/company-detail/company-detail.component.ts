@@ -4,10 +4,10 @@ import {NgIf, NgFor, DatePipe} from '@angular/common';
 
 // Internal
 import {Company} from "../../models/company.model";
+import {Officer} from "../../models/officer.model";
 
 // Services
 import {CompanyService} from "../../services/company.service";
-import {Officer} from "../../models/officer.model";
 
 @Component({
   selector: 'app-company-detail',

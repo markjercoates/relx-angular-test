@@ -37,8 +37,8 @@
       </li>
     </ul>
   </div>
-  <div class="col-md-6">
-    <app-company-detail [company]="selectedCompany"/>
+  <div class="col-md-6" *ngIf="selectedCompany">
+    <app-company-detail  [company]="selectedCompany"/>
   </div>
 </div>
 

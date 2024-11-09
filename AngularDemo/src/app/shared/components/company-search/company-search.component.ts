@@ -1,22 +1,21 @@
-// Angular modules
+// Angular
 import { Component } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
-import {
-  FormControl,
-  ReactiveFormsModule,
-  FormGroup,
-  Validators,
-  ValidatorFn,
-  ValidationErrors,
-  AbstractControl
-} from "@angular/forms";
+import { FormControl,ReactiveFormsModule,FormGroup,Validators,ValidatorFn,ValidationErrors,AbstractControl} from "@angular/forms";
+
+// External
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 // Models
 import {Company} from "../../models/company.model";
+
+// Components
 import {CompanyDetailComponent} from "../company-detail/company-detail.component";
+import {AccessDeniedModalComponent} from "../access-denied/access-denied.component";
 
 // Services
 import {CompanyService} from "../../services/company.service";
+import {AuthenticationService} from "../../services/authentication.service";
 
 export function alphanumericValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -38,12 +37,16 @@ export class CompanySearchComponent {
     searchForm!: FormGroup;
     isSubmitted: boolean = false;
     isSearchCompleted: boolean = false;
-    selectedCompany!: Company;
+    selectedCompany: Company | null = null;
+    modalService: NgbModal;
+    isAuthenticated = false;
 
-    constructor(private companyService: CompanyService) {
+    constructor(private companyService: CompanyService, private authenticationService: AuthenticationService) {
         this.searchForm = new FormGroup({
             searchTerm: new FormControl('', [Validators.required, alphanumericValidator()])
         });
+        this.modalService = new NgbModal();
+        this.authenticationService.isLoggedIn.subscribe((status) => (this.isAuthenticated = status));
     }
 
     searchCompanies(): void {
@@ -64,10 +67,16 @@ export class CompanySearchComponent {
             console.log(error);
              }
           });
+        this.selectedCompany = null;
       }
     }
 
     selectCompany(company: Company): void {
-       this.selectedCompany = company;
+      if(this.isAuthenticated) {
+        this.selectedCompany = company;
+      } else {
+        const accessDeniedModalRef = this.modalService.open(AccessDeniedModalComponent, { size: 'lg' });
+        accessDeniedModalRef.componentInstance.message = 'Access Denied. Login to view company details.';
+      }
     }
 }

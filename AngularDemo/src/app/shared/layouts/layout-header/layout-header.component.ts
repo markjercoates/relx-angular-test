@@ -32,6 +32,7 @@ export class LayoutHeaderComponent implements OnInit {
   async logout(): Promise<void> {
     this.authenticationService.logout();
     await this.router.navigate(['/home']);
+    location.reload();
   }
 
   async login(): Promise<void> {
