@@ -6,13 +6,16 @@ import {NgIf, NgFor, DatePipe} from '@angular/common';
 import {Company} from "../../models/company.model";
 import {Officer} from "../../models/officer.model";
 
+// External
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+
 // Services
 import {CompanyService} from "../../services/company.service";
 
 @Component({
   selector: 'app-company-detail',
   standalone: true,
-  imports: [NgIf, NgFor, DatePipe],
+  imports: [NgIf, NgFor, DatePipe, NgbAccordionModule],
   templateUrl: './company-detail.component.html',
   styleUrl: './company-detail.component.scss'
 })
