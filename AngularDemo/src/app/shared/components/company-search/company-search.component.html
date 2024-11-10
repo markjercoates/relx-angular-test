@@ -29,6 +29,7 @@
       <li
         *ngFor="let company of companies; let i = index"
         class="list-group-item list-group-item-action text-start"
+        style="cursor: pointer;"
         (click)="selectCompany(company)"
       >
         <h5 class="mb-1">{{ company.title }}</h5>

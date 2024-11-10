@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <div ngbAccordionItem [collapsed]="false" *ngIf="officers.length > 0">
+    <div ngbAccordionItem [collapsed]="false" *ngIf="officers && officers.length > 0">
       <h5 ngbAccordionHeader>
         <button ngbAccordionButton>
           {{ company.title }} - Officers
