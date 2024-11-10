@@ -1,7 +1,7 @@
 // Angular
 import { Component } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
-import { FormControl,ReactiveFormsModule,FormGroup,Validators,ValidatorFn,ValidationErrors,AbstractControl} from "@angular/forms";
+import { FormControl,ReactiveFormsModule,FormGroup,Validators} from "@angular/forms";
 
 // External
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,13 +17,8 @@ import {AccessDeniedModalComponent} from "../access-denied/access-denied.compone
 import {CompanyService} from "../../services/company.service";
 import {AuthenticationService} from "../../services/authentication.service";
 
-export function alphanumericValidator(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const value = control.value;
-      const isValid = /^[a-zA-Z0-9]*$/.test(value);
-      return isValid ? null : { alphanumeric: true };
-    };
-  }
+// Validators
+import { alphanumericValidator } from '../../validators/alphanumeric-validator';
 
 @Component({
   selector: 'app-company-search',
