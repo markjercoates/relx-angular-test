@@ -38,3 +38,4 @@ The Home page contains the Company Search and Company Detail components.
 -  [Bootstrap 5](https://getbootstrap.com/) and [ng-bootstrap](https://ng-bootstrap.github.io/) components
 
 ## Preview
+<img src="AngularDemo/src/assets/HomePage.png" alt="Angular Test for Relx" width="100%"/>
