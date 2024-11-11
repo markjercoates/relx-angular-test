@@ -24,7 +24,7 @@ npm install
 ### Development 
 Run the following command for a development server:
 ```sh
-ng-serve
+ng serve
 ```
 ## Content
 The project consists of the following pages:
